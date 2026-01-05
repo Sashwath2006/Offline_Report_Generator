@@ -1,13 +1,8 @@
 import sys
+from PySide6.QtWidgets import QApplication, QMainWindow, QMenuBar
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QLabel,
-    QMenuBar,
-    QWidget,
-    QVBoxLayout,
-)
+
+from ui.chat_widget import ChatWidget
 
 
 class MainWindow(QMainWindow):
@@ -23,20 +18,12 @@ class MainWindow(QMainWindow):
         menu_bar = QMenuBar(self)
         self.setMenuBar(menu_bar)
 
-        file_menu = menu_bar.addMenu("File")
-        help_menu = menu_bar.addMenu("Help")
+        menu_bar.addMenu("File")
+        menu_bar.addMenu("Help")
 
     def _setup_ui(self):
-        central_widget = QWidget()
-        layout = QVBoxLayout()
-
-        placeholder_label = QLabel("Application skeleton initialized.")
-        placeholder_label.setAlignment(Qt.AlignCenter)
-
-        layout.addWidget(placeholder_label)
-        central_widget.setLayout(layout)
-
-        self.setCentralWidget(central_widget)
+        # Phase 6: temporary direct wiring to chat widget
+        self.setCentralWidget(ChatWidget(model_id="mistral:7b"))
 
 
 def main():
